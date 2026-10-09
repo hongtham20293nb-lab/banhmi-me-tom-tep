@@ -3,80 +3,177 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bánh Mì Mẹ Tôm Tép - Bữa Sáng Yêu Thương Cùng Con Tới Trường</title>
+    <title>Bánh Mì Mẹ Tôm Tép - Ăn Nhanh Học Khỏe</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body class="bg-gray-50 text-gray-800 pb-12">
+<body class="bg-amber-50/30 text-gray-800 pb-12 font-sans">
 
-    <!-- Header Banner & Slogan -->
-    <header class="bg-gradient-to-r from-orange-600 to-amber-500 text-white py-4 px-4 shadow-md sticky top-0 z-40">
+    <!-- Header Banner & Navigation -->
+    <header class="bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600 text-white py-3 px-4 shadow-lg sticky top-0 z-50">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-3">
             <div class="text-center md:text-left">
-                <h1 class="text-2xl font-extrabold flex items-center justify-center md:justify-start gap-2">
-                    <i class="fa-solid fa-bread-slice text-amber-200"></i> BÁNH MÌ MẸ TÔM TÉP
+                <h1 class="text-2xl font-black flex items-center justify-center md:justify-start gap-2 tracking-wide">
+                    <i class="fa-solid fa-bread-slice text-amber-200 animate-bounce"></i> BÁNH MÌ MẸ TÔM TÉP
                 </h1>
-                <p class="text-amber-100 text-xs font-semibold mt-0.5 tracking-wide italic">
-                    <i class="fa-solid fa-heart text-red-300"></i> Slogan: "Bữa sáng yêu thương - Cùng con tới trường"
-                </p>
+                <div class="flex flex-wrap justify-center md:justify-start gap-3 text-amber-100 text-xs font-medium mt-0.5">
+                    <span>❤️ "Bữa sáng yêu thương – Cùng con tới trường"</span>
+                    <span class="hidden md:inline">|</span>
+                    <span>📍 123 Đường Học Sinh, Phường Cổng Trường, Q.1</span>
+                    <span class="hidden md:inline">|</span>
+                    <span>📞 Hotline đặt trước: 0900.000.999</span>
+                </div>
             </div>
             
-            <!-- Navigation Menu -->
-            <nav class="flex flex-wrap justify-center gap-2 bg-white/20 p-1 rounded-lg backdrop-blur-md text-xs font-bold">
-                <button id="nav-customer" onclick="switchPage('customer')" class="px-3 py-2 rounded-md bg-white text-orange-600 shadow">
-                    <i class="fa-solid fa-store"></i> Thực Đơn
+            <nav class="flex flex-wrap justify-center gap-1.5 bg-white/20 p-1 rounded-xl backdrop-blur-md text-xs font-bold">
+                <button id="nav-customer" onclick="switchPage('customer')" class="px-3 py-1.5 rounded-lg bg-white text-orange-600 shadow">
+                    <i class="fa-solid fa-utensils"></i> Thực Đơn
                 </button>
-                <button id="nav-cart" onclick="switchPage('cart')" class="px-3 py-2 rounded-md text-white hover:bg-white/10 relative">
+                <button id="nav-cart" onclick="switchPage('cart')" class="px-3 py-1.5 rounded-lg text-white hover:bg-white/10 relative">
                     <i class="fa-solid fa-cart-shopping"></i> Giỏ Hàng 
                     <span id="cart-badge" class="bg-red-500 text-white rounded-full text-[10px] px-1.5 py-0.5 ml-1 hidden">0</span>
                 </button>
-                <button id="nav-admin-menu" onclick="switchPage('admin-menu')" class="px-3 py-2 rounded-md text-white hover:bg-white/10">
-                    <i class="fa-solid fa-utensils"></i> QL Món
+                <button id="nav-admin-menu" onclick="switchPage('admin-menu')" class="px-3 py-1.5 rounded-lg text-white hover:bg-white/10">
+                    <i class="fa-solid fa-list-check"></i> QL Món
                 </button>
-                <button id="nav-admin-orders" onclick="switchPage('admin-orders')" class="px-3 py-2 rounded-md text-white hover:bg-white/10">
+                <button id="nav-admin-orders" onclick="switchPage('admin-orders')" class="px-3 py-1.5 rounded-lg text-white hover:bg-white/10">
                     <i class="fa-solid fa-receipt"></i> QL Đơn Hàng
                 </button>
-                <button id="nav-admin-customers" onclick="switchPage('admin-customers')" class="px-3 py-2 rounded-md text-white hover:bg-white/10">
+                <button id="nav-admin-customers" onclick="switchPage('admin-customers')" class="px-3 py-1.5 rounded-lg text-white hover:bg-white/10">
                     <i class="fa-solid fa-users"></i> Khách Hàng
                 </button>
-                <button id="nav-admin-analytics" onclick="switchPage('admin-analytics')" class="px-3 py-2 rounded-md text-white hover:bg-white/10">
-                    <i class="fa-solid fa-chart-line"></i> Báo Cáo
+                <button id="nav-admin-analytics" onclick="switchPage('admin-analytics')" class="px-3 py-1.5 rounded-lg text-white hover:bg-white/10">
+                    <i class="fa-solid fa-chart-pie"></i> Báo Cáo
                 </button>
             </nav>
         </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-4 mt-6">
+    <main class="max-w-7xl mx-auto px-4 mt-4">
 
-        <!-- 1. TRANG KHÁCH HÀNG: THỰC ĐƠN PHONG PHÚ -->
-        <section id="page-customer" class="page-content">
-            <!-- Cam kết chất lượng -->
-            <div class="bg-amber-50 border border-amber-200 rounded-xl p-3 mb-6 flex flex-wrap justify-around text-xs font-semibold text-amber-900 gap-2">
-                <span class="flex items-center gap-1"><i class="fa-solid fa-shield-heart text-orange-500"></i> Đóng gói sạch sẽ, vừa đi vừa ăn</span>
-                <span class="flex items-center gap-1"><i class="fa-solid fa-tags text-orange-500"></i> Giá hợp lý 5k - 15k / món</span>
-                <span class="flex items-center gap-1"><i class="fa-solid fa-rotate text-orange-500"></i> Thực đơn đổi mới không lo bị ngán</span>
+        <!-- 1. TRANG KHÁCH HÀNG -->
+        <section id="page-customer" class="page-content space-y-8">
+            
+            <!-- HERO BANNER TĂNG CẢM XÚC -->
+            <div class="relative bg-gradient-to-r from-orange-500 to-amber-400 rounded-2xl overflow-hidden shadow-xl text-white p-6 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="space-y-3 z-10 text-center md:text-left max-w-xl">
+                    <span class="bg-white/20 text-amber-100 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider backdrop-blur-sm">
+                        ☀️ Bữa Sáng Năng Lượng Cho Bé
+                    </span>
+                    <h2 class="text-3xl md:text-5xl font-black leading-tight drop-shadow">
+                        Ăn nhanh – học khỏe!
+                    </h2>
+                    <p class="text-amber-100 text-sm md:text-base font-medium">
+                        Bữa sáng mẹ chọn - con vui tới lớp! Đóng gói tiện lợi, vừa đi vừa ăn không lo muộn giờ học.
+                    </p>
+                    <div class="pt-2 flex flex-wrap justify-center md:justify-start gap-3">
+                        <a href="#combo-section" class="bg-white text-orange-600 hover:bg-amber-50 px-5 py-2.5 rounded-xl font-black text-sm shadow-md transition">
+                            🍱 Xem Combo Tiết Kiệm
+                        </a>
+                        <a href="#menu-grid-section" class="bg-orange-600/80 hover:bg-orange-700 text-white border border-white/30 px-5 py-2.5 rounded-xl font-bold text-sm shadow transition">
+                            🥪 Chọn Món Lẻ
+                        </a>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2 h-48 md:h-64 rounded-xl overflow-hidden shadow-2xl border-4 border-white/20">
+                    <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover">
+                </div>
             </div>
 
-            <!-- Thanh Lọc Danh Mục Món -->
-            <div class="flex flex-wrap gap-2 mb-6 border-b pb-3">
-                <button onclick="filterCategory('ALL')" class="cat-btn bg-orange-500 text-white px-4 py-2 rounded-full text-xs font-bold shadow">Tất Cả Món</button>
-                <button onclick="filterCategory('MAN')" class="cat-btn bg-gray-200 text-gray-700 hover:bg-orange-100 px-4 py-2 rounded-full text-xs font-bold">🍱 Món Mặn Tiện Lợi (10k - 15k)</button>
-                <button onclick="filterCategory('NGOT')" class="cat-btn bg-gray-200 text-gray-700 hover:bg-orange-100 px-4 py-2 rounded-full text-xs font-bold">🍰 Món Ngọt Nhẹ Nhàng (5k - 10k)</button>
-                <button onclick="filterCategory('DUONG')" class="cat-btn bg-gray-200 text-gray-700 hover:bg-orange-100 px-4 py-2 rounded-full text-xs font-bold">🥤 Đồ Uống Đi Kèm (5k - 10k)</button>
+            <!-- KHU COMBO NỔI BẬT -->
+            <div id="combo-section" class="scroll-mt-20">
+                <div class="flex items-center gap-2 mb-4">
+                    <span class="text-2xl">🔥</span>
+                    <h3 class="text-2xl font-black text-gray-800">Combo Tiết Kiệm "Năng Lượng Tới Trường"</h3>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Combo 1 -->
+                    <div class="bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-2xl p-4 shadow-md flex items-center justify-between hover:shadow-lg transition">
+                        <div class="space-y-2 pr-2">
+                            <span class="bg-white/20 text-white text-[10px] font-extrabold px-2 py-0.5 rounded-full">⭐ BÉ YÊU THÍCH</span>
+                            <h4 class="font-black text-lg">Combo Học Giỏi</h4>
+                            <p class="text-xs text-amber-100">1 Bánh mì kẹp thập cẩm + 1 Sữa tươi lúa mạch mini</p>
+                            <div class="flex items-center gap-3 pt-1">
+                                <span class="text-2xl font-black text-yellow-200">20.000 đ</span>
+                                <span class="text-xs line-through text-amber-200">23.000đ</span>
+                            </div>
+                            <button onclick="addToCart('c_combo1')" class="mt-2 bg-white text-orange-600 hover:bg-amber-100 px-4 py-1.5 rounded-lg font-black text-xs shadow flex items-center gap-1">
+                                <i class="fa-solid fa-cart-plus"></i> Mua Combo
+                            </button>
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=300&q=80" class="w-28 h-28 object-cover rounded-xl border-2 border-white/50 shadow">
+                    </div>
+                    <!-- Combo 2 -->
+                    <div class="bg-gradient-to-r from-emerald-500 to-teal-600 text-white rounded-2xl p-4 shadow-md flex items-center justify-between hover:shadow-lg transition">
+                        <div class="space-y-2 pr-2">
+                            <span class="bg-white/20 text-white text-[10px] font-extrabold px-2 py-0.5 rounded-full">⚡ KHỞI ĐẦU VUI VẺ</span>
+                            <h4 class="font-black text-lg">Combo Vui Tới Lớp</h4>
+                            <p class="text-xs text-teal-100">1 Xôi gói thịt nướng + 1 Nước cam ép nguyên chất</p>
+                            <div class="flex items-center gap-3 pt-1">
+                                <span class="text-2xl font-black text-yellow-200">20.000 đ</span>
+                                <span class="text-xs line-through text-teal-200">22.000đ</span>
+                            </div>
+                            <button onclick="addToCart('c_combo2')" class="mt-2 bg-white text-teal-700 hover:bg-teal-50 px-4 py-1.5 rounded-lg font-black text-xs shadow flex items-center gap-1">
+                                <i class="fa-solid fa-cart-plus"></i> Mua Combo
+                            </button>
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1541832676-9b763b0239ab?auto=format&fit=crop&w=300&q=80" class="w-28 h-28 object-cover rounded-xl border-2 border-white/50 shadow">
+                    </div>
+                </div>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5" id="customer-menu-grid"></div>
+            <!-- THANH LỌC DANH MỤC -->
+            <div id="menu-grid-section" class="scroll-mt-20">
+                <div class="flex flex-wrap items-center justify-between gap-3 mb-4 border-b border-amber-200 pb-3">
+                    <h3 class="text-xl font-black text-gray-800 flex items-center gap-2">
+                        <span>🍱</span> Thực Đơn Sáng Cho Bé
+                    </h3>
+                    <div class="flex flex-wrap gap-2">
+                        <button onclick="filterCategory('ALL')" class="cat-btn bg-orange-500 text-white px-3.5 py-1.5 rounded-full text-xs font-extrabold shadow">Tất Cả</button>
+                        <button onclick="filterCategory('MAN')" class="cat-btn bg-white text-gray-700 hover:bg-orange-100 border border-gray-200 px-3.5 py-1.5 rounded-full text-xs font-bold">🍞 Món Mặn</button>
+                        <button onclick="filterCategory('NGOT')" class="cat-btn bg-white text-gray-700 hover:bg-orange-100 border border-gray-200 px-3.5 py-1.5 rounded-full text-xs font-bold">🍰 Món Ngọt</button>
+                        <button onclick="filterCategory('DUONG')" class="cat-btn bg-white text-gray-700 hover:bg-orange-100 border border-gray-200 px-3.5 py-1.5 rounded-full text-xs font-bold">🥛 Đồ Uống</button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5" id="customer-menu-grid"></div>
+            </div>
+
+            <!-- KHU PHỤ HUYNH NÓI GÌ -->
+            <div class="bg-white rounded-2xl p-6 border border-amber-200 shadow-sm mt-8">
+                <h3 class="text-center text-lg font-black text-gray-800 mb-6 flex items-center justify-center gap-2">
+                    💬 Phụ Huynh Nói Gì Về Bánh Mì Mẹ Tôm Tép?
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="bg-amber-50/50 p-4 rounded-xl border border-amber-100 text-xs space-y-2">
+                        <div class="flex items-center gap-1 text-amber-500 font-bold">⭐⭐⭐⭐⭐</div>
+                        <p class="text-gray-600 italic">"Con mình đi học hay vội, may có gian hàng Mẹ Tôm Tép đóng túi giấy sạch sẽ, bé vừa đi vừa ăn không sợ bẩn áo."</p>
+                        <div class="font-bold text-gray-800 text-right">- Chị Linh (Phụ huynh lớp 3A)</div>
+                    </div>
+                    <div class="bg-amber-50/50 p-4 rounded-xl border border-amber-100 text-xs space-y-2">
+                        <div class="flex items-center gap-1 text-amber-500 font-bold">⭐⭐⭐⭐⭐</div>
+                        <p class="text-gray-600 italic">"Món ăn đa dạng, combo 20k vừa túi tiền mà có cả bánh lẫn nước cam ép nguyên chất. Bé khen xôi dẻo quánh!"</p>
+                        <div class="font-bold text-gray-800 text-right">- Anh Hoàng (Phụ huynh lớp 1B)</div>
+                    </div>
+                    <div class="bg-amber-50/50 p-4 rounded-xl border border-amber-100 text-xs space-y-2">
+                        <div class="flex items-center gap-1 text-amber-500 font-bold">⭐⭐⭐⭐⭐</div>
+                        <p class="text-gray-600 italic">"Chuẩn bị cực nhanh, không lo con bị muộn giờ tập thể dục sáng. Rất an tâm về vệ sinh an toàn thực phẩm!"</p>
+                        <div class="font-bold text-gray-800 text-right">- Mẹ Tít (Phụ huynh lớp 5C)</div>
+                    </div>
+                </div>
+            </div>
+
         </section>
 
         <!-- 2. TRANG GIỎ HÀNG (/cart) -->
         <section id="page-cart" class="page-content hidden">
             <h2 class="text-xl font-bold text-gray-800 mb-4 border-b pb-2 flex items-center gap-2">
-                <i class="fa-solid fa-shopping-cart text-orange-500"></i> Giỏ Hàng & Thanh Toán
+                <i class="fa-solid fa-shopping-cart text-orange-500"></i> Giỏ Hàng Đặt Đồ Ăn Cho Bé
             </h2>
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <div class="lg:col-span-2 bg-white rounded-xl shadow-sm border p-4">
-                    <h3 class="font-bold text-gray-700 mb-3">Các món đã chọn cho bé</h3>
+                    <h3 class="font-bold text-gray-700 mb-3">Các món đã chọn</h3>
                     <div id="cart-list" class="divide-y"></div>
                     <div class="flex justify-between items-center pt-4 border-t mt-4">
                         <span class="font-bold text-gray-700">Tổng cộng:</span>
@@ -96,15 +193,15 @@
                             <input type="tel" id="order-cust-phone" required pattern="[0-9]{10,11}" placeholder="0900000001" class="w-full px-3 py-2 text-sm border rounded-lg focus:ring-2 focus:ring-orange-500 outline-none">
                         </div>
                         <div>
-                            <label class="block text-xs font-semibold mb-1">Địa chỉ giao / Lớp học *</label>
-                            <input type="text" id="order-cust-address" required placeholder="Cổng Trường Tiểu Học ABC / Cổng A" class="w-full px-3 py-2 text-sm border rounded-lg focus:ring-2 focus:ring-orange-500 outline-none">
+                            <label class="block text-xs font-semibold mb-1">Địa chỉ giao / Cổng trường *</label>
+                            <input type="text" id="order-cust-address" required placeholder="Cổng Trường ABC / Lớp 3B" class="w-full px-3 py-2 text-sm border rounded-lg focus:ring-2 focus:ring-orange-500 outline-none">
                         </div>
                         <div>
                             <label class="block text-xs font-semibold mb-1">Ghi chú (Ví dụ: Giao trước 7h15, không cay...)</label>
                             <textarea id="order-cust-note" rows="2" class="w-full px-3 py-2 text-sm border rounded-lg focus:ring-2 focus:ring-orange-500 outline-none"></textarea>
                         </div>
                         <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-lg shadow transition flex items-center justify-center gap-2">
-                            <i class="fa-solid fa-check-circle"></i> XÁC NHẬN ĐẶT ĐƠN
+                            <i class="fa-solid fa-check-circle"></i> XÁC NHẬN ĐẶT HÀNG
                         </button>
                     </form>
                 </div>
@@ -152,7 +249,7 @@
                         <tr>
                             <th class="p-3">Hình ảnh</th>
                             <th class="p-3">Tên món</th>
-                            <th class="p-3">Loại món</th>
+                            <th class="p-3">Danh mục</th>
                             <th class="p-3">Giá bán</th>
                             <th class="p-3">Trạng thái</th>
                             <th class="p-3 text-center">Thao tác</th>
@@ -272,64 +369,44 @@
         </div>
     </div>
 
-    <footer class="text-center text-xs text-gray-400 mt-12 py-4 border-t">
-        Dự án cá nhân phục vụ cuộc thi Vibe Coding - Phase 2
+    <!-- FOOTER BỔ SUNG ĐỊA CHỈ & HOTLINE THẬT ĐẸP -->
+    <footer class="bg-white mt-12 py-6 border-t border-amber-200 text-center text-xs text-gray-600 space-y-2">
+        <div class="font-bold text-gray-800 text-sm">🥖 BÁNH MÌ MẸ TÔM TÉP</div>
+        <div>📍 Địa chỉ: 123 Đường Học Sinh, Phường Cổng Trường, Quận 1, TP.HCM (Thông tin giả lập)</div>
+        <div>📞 Hotline đặt trước cho bé: <span class="font-bold text-orange-600">0900.000.999</span> | ✉️ Email: metomtep@example.com</div>
+        <div class="text-gray-400 pt-2">Dự án cá nhân phục vụ cuộc thi Vibe Coding - Phase 2</div>
     </footer>
 
     <script>
-        // Danh sách Món ăn Đa dạng (Món mặn, Món ngọt, Đồ uống giá 5k - 15k)
         let menuItems = [
-            // MÓN MẶN TIỆN LỢI
-            { id: "1", cat: "MAN", name: "Bánh Mì Kẹp Thập Cẩm Mini", description: "Trứng, xúc xích, chả, pate nhà làm đóng túi giấy sạch sẽ.", price: 15000, image: "https://images.unsplash.com/photo-1626804475297-4160820cca34?auto=format&fit=crop&w=500&q=80", status: "AVAILABLE" },
-            { id: "2", cat: "MAN", name: "Xôi Gói Nhỏ Thần Thánh", description: "Xôi dẻo quánh topping xôi thịt, ruốc bơ hoặc xôi ngô ngọt.", price: 12000, image: "https://images.unsplash.com/photo-1541832676-9b763b0239ab?auto=format&fit=crop&w=500&q=80", status: "AVAILABLE" },
-            { id: "3", cat: "MAN", name: "Bánh Bao Nhân Thịt Trứng Cút", description: "Bánh bao nóng hổi mọng nước, cầm vừa tay cho bé vừa đi vừa ăn.", price: 12000, image: "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=500&q=80", status: "AVAILABLE" },
-            { id: "4", cat: "MAN", name: "Cơm Nắm Kẹp Ruốc Xúc Xích", description: "Cơm dẻo cuộn lá rong biển kẹp ruốc gà cay nhẹ hoặc xúc xích.", price: 10000, image: "https://images.unsplash.com/photo-1516684732162-798a0062be99?auto=format&fit=crop&w=500&q=80", status: "AVAILABLE" },
-
-            // MÓN NGỌT NHẸ NHÀNG
-            { id: "5", cat: "NGOT", name: "Bánh Rán Nhân Đậu Xanh / Đường", description: "Bánh rán giòn rụm bọc đường hoặc vừng thơm lừng.", price: 5000, image: "https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?auto=format&fit=crop&w=500&q=80", status: "AVAILABLE" },
-            { id: "6", cat: "NGOT", name: "Bánh Su Kem / Bông Lan Mini", description: "Set 2 chiếc bánh bông lan mềm mịn béo ngậy kem tươi.", price: 8000, image: "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=500&q=80", status: "AVAILABLE" },
-            { id: "7", cat: "NGOT", name: "Chuối / Khoai Nướng Gói Giấy", description: "Khoai mật / chuối nướng bọc giấy bạc ấm nóng thơm phức.", price: 10000, image: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=500&q=80", status: "AVAILABLE" },
-            { id: "8", cat: "NGOT", name: "Sữa Chua Túi Đáng Yêu", description: "Sữa chua lên men tự nhiên dạng túi tiện lợi bóp ăn ngay.", price: 5000, image: "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=500&q=80", status: "AVAILABLE" },
-
-            // ĐỒ UỐNG ĐI KÈM
-            { id: "9", cat: "DUONG", name: "Nước Cam Ép Chai Mini (250ml)", description: "Cam tươi nguyên chất giàu Vitamin C cho bé tỉnh táo cả ngày.", price: 10000, image: "https://images.unsplash.com/photo-1613478223719-2ab802602423?auto=format&fit=crop&w=500&q=80", status: "AVAILABLE" },
-            { id: "10", cat: "DUONG", name: "Sữa Tươi Hộp Nhỏ Lúa Mạch", description: "Sữa tươi tiệt trùng thơm ngon bổ sung năng lượng học tập.", price: 8000, image: "https://images.unsplash.com/photo-1563636619-e9143da7973b?auto=format&fit=crop&w=500&q=80", status: "AVAILABLE" },
-            { id: "11", cat: "DUONG", name: "Trà Chanh / Chanh Muối Bottled", description: "Nước giải khát chanh muối đóng chai mát lạnh dễ mang đi.", price: 7000, image: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=500&q=80", status: "AVAILABLE" }
+            { id: "c_combo1", cat: "COMBO", name: "Combo Học Giỏi", description: "1 Bánh mì kẹp thập cẩm mini + 1 Sữa tươi lúa mạch.", price: 20000, image: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=500&q=80", status: "AVAILABLE", isHot: true },
+            { id: "c_combo2", cat: "COMBO", name: "Combo Vui Tới Lớp", description: "1 Xôi gói thịt nướng + 1 Nước cam ép nguyên chất.", price: 20000, image: "https://images.unsplash.com/photo-1541832676-9b763b0239ab?auto=format&fit=crop&w=500&q=80", status: "AVAILABLE", isHot: true },
+            { id: "1", cat: "MAN", name: "Bánh Mì Kẹp Thập Cẩm Mini 🍞", description: "Trứng, xúc xích, chả, pate đóng túi giấy sạch sẽ.", price: 15000, image: "https://images.unsplash.com/photo-1626804475297-4160820cca34?auto=format&fit=crop&w=500&q=80", status: "AVAILABLE", isHot: true },
+            { id: "2", cat: "MAN", name: "Xôi Gói Nhỏ Thần Thánh 🍙", description: "Xôi dẻo quánh topping xôi thịt, ruốc bơ thơm lừng.", price: 12000, image: "https://images.unsplash.com/photo-1541832676-9b763b0239ab?auto=format&fit=crop&w=500&q=80", status: "AVAILABLE", isHot: false },
+            { id: "3", cat: "MAN", name: "Bánh Bao Nhân Thịt Trứng Cút 🥟", description: "Bánh bao nóng hổi mọng nước cầm vừa tay bé.", price: 12000, image: "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=500&q=80", status: "AVAILABLE", isHot: true },
+            { id: "4", cat: "MAN", name: "Cơm Nắm Kẹp Ruốc Xúc Xích 🍱", description: "Cơm dẻo cuộn lá rong biển kẹp ruốc gà thơm ngọt.", price: 10000, image: "https://images.unsplash.com/photo-1516684732162-798a0062be99?auto=format&fit=crop&w=500&q=80", status: "AVAILABLE", isHot: false },
+            { id: "5", cat: "NGOT", name: "Bánh Rán Nhân Đậu Xanh / Đường 🍩", description: "Bánh rán giòn rụm bọc đường hoặc vừng thơm lừng.", price: 5000, image: "https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?auto=format&fit=crop&w=500&q=80", status: "AVAILABLE", isHot: false },
+            { id: "6", cat: "NGOT", name: "Bánh Su Kem / Bông Lan Mini 🍰", description: "Set 2 chiếc bánh bông lan mềm mịn béo ngậy.", price: 8000, image: "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=500&q=80", status: "AVAILABLE", isHot: true },
+            { id: "7", cat: "NGOT", name: "Chuối / Khoai Nướng Gói Giấy 🍌", description: "Khoai mật / chuối nướng bọc giấy bạc ấm nóng.", price: 10000, image: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=500&q=80", status: "AVAILABLE", isHot: false },
+            { id: "8", cat: "NGOT", name: "Sữa Chua Túi Đáng Yêu 🍦", description: "Sữa chua lên men tự nhiên dạng túi bóp ăn ngay.", price: 5000, image: "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=500&q=80", status: "AVAILABLE", isHot: true },
+            { id: "9", cat: "DUONG", name: "Nước Cam Ép Chai Mini 🍊", description: "Cam tươi nguyên chất giàu Vitamin C cho bé tỉnh táo.", price: 10000, image: "https://images.unsplash.com/photo-1613478223719-2ab802602423?auto=format&fit=crop&w=500&q=80", status: "AVAILABLE", isHot: true },
+            { id: "10", cat: "DUONG", name: "Sữa Tươi Hộp Nhỏ Lúa Mạch 🥛", description: "Sữa tươi tiệt trùng thơm ngon bổ sung năng lượng.", price: 8000, image: "https://images.unsplash.com/photo-1563636619-e9143da7973b?auto=format&fit=crop&w=500&q=80", status: "AVAILABLE", isHot: false },
+            { id: "11", cat: "DUONG", name: "Trà Chanh / Chanh Muối Bottled 🍋", description: "Nước giải khát chanh muối đóng chai mát lạnh.", price: 7000, image: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=500&q=80", status: "AVAILABLE", isHot: false }
         ];
 
-        let customers = [
-            { id: "c1", name: "Nguyễn Văn A", phone: "0900000001", address: "Cổng Trường Tiểu Học ABC" }
-        ];
-
-        let orders = [
-            {
-                id: "ORD-9912",
-                customerId: "c1",
-                customerName: "Nguyễn Văn A",
-                phone: "0900000001",
-                address: "Cổng Trường Tiểu Học ABC",
-                note: "Cho con học lớp 3B",
-                totalAmount: 23000,
-                status: "COMPLETED",
-                date: "2026-10-09",
-                items: [
-                    { menuItemId: "1", name: "Bánh Mì Kẹp Thập Cẩm Mini", price: 15000, quantity: 1, subtotal: 15000 },
-                    { menuItemId: "10", name: "Sữa Tươi Hộp Nhỏ Lúa Mạch", price: 8000, quantity: 1, subtotal: 8000 }
-                ]
-            }
-        ];
+        let customers = [{ id: "c1", name: "Nguyễn Văn A", phone: "0900000001", address: "Cổng Trường Tiểu Học ABC" }];
+        let orders = [{
+            id: "ORD-9912", customerId: "c1", customerName: "Nguyễn Văn A", phone: "0900000001", address: "Cổng Trường Tiểu Học ABC",
+            note: "Cho con học lớp 3B", totalAmount: 20000, status: "COMPLETED", date: "2026-10-09",
+            items: [{ menuItemId: "c_combo1", name: "Combo Học Giỏi", price: 20000, quantity: 1, subtotal: 20000 }]
+        }];
 
         let cart = [];
         let currentCat = 'ALL';
         let chartInstance = null;
 
         document.addEventListener("DOMContentLoaded", () => {
-            renderCustomerMenu();
-            renderCart();
-            renderAdminMenu();
-            renderAdminOrders();
-            renderAdminCustomers();
-            renderAnalytics();
+            renderCustomerMenu(); renderCart(); renderAdminMenu(); renderAdminOrders(); renderAdminCustomers(); renderAnalytics();
         });
 
         function switchPage(pageId) {
@@ -339,8 +416,8 @@
             ['customer', 'cart', 'admin-menu', 'admin-orders', 'admin-customers', 'admin-analytics'].forEach(p => {
                 const btn = document.getElementById(`nav-${p}`);
                 if (btn) {
-                    if (p === pageId) btn.className = "px-3 py-2 rounded-md bg-white text-orange-600 shadow";
-                    else btn.className = "px-3 py-2 rounded-md text-white hover:bg-white/10 relative";
+                    if (p === pageId) btn.className = "px-3 py-1.5 rounded-lg bg-white text-orange-600 shadow";
+                    else btn.className = "px-3 py-1.5 rounded-lg text-white hover:bg-white/10 relative";
                 }
             });
 
@@ -353,47 +430,39 @@
         function filterCategory(cat) {
             currentCat = cat;
             document.querySelectorAll('.cat-btn').forEach(btn => {
-                btn.className = "cat-btn bg-gray-200 text-gray-700 hover:bg-orange-100 px-4 py-2 rounded-full text-xs font-bold";
+                btn.className = "cat-btn bg-white text-gray-700 hover:bg-orange-100 border border-gray-200 px-3.5 py-1.5 rounded-full text-xs font-bold";
             });
-            event.target.className = "cat-btn bg-orange-500 text-white px-4 py-2 rounded-full text-xs font-bold shadow";
+            event.target.className = "cat-btn bg-orange-500 text-white px-3.5 py-1.5 rounded-full text-xs font-extrabold shadow";
             renderCustomerMenu();
         }
 
         function renderCustomerMenu() {
             const grid = document.getElementById('customer-menu-grid');
-            let filtered = menuItems.filter(i => i.status === 'AVAILABLE');
-            if (currentCat !== 'ALL') {
-                filtered = filtered.filter(i => i.cat === currentCat);
-            }
+            let filtered = menuItems.filter(i => i.status === 'AVAILABLE' && i.cat !== 'COMBO');
+            if (currentCat !== 'ALL') filtered = filtered.filter(i => i.cat === currentCat);
 
             grid.innerHTML = filtered.map(item => `
-                <div class="bg-white rounded-xl shadow-sm border overflow-hidden flex flex-col justify-between hover:shadow-md transition">
+                <div class="bg-white rounded-2xl shadow-sm border border-amber-100 overflow-hidden flex flex-col justify-between hover:shadow-md transition group">
                     <div>
-                        <div class="relative">
-                            <img src="${item.image}" class="w-full h-36 object-cover">
-                            <span class="absolute top-2 left-2 bg-orange-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow">
-                                ${getCatBadge(item.cat)}
-                            </span>
+                        <div class="relative overflow-hidden">
+                            <img src="${item.image}" class="w-full h-40 object-cover group-hover:scale-105 transition duration-300">
+                            ${item.isHot ? `<span class="absolute top-2 left-2 bg-red-500 text-white text-[10px] font-black px-2 py-0.5 rounded-full shadow flex items-center gap-1">⭐ BÉ THÍCH</span>` : ''}
+                            <span class="absolute bottom-2 right-2 bg-black/60 backdrop-blur-md text-white text-[10px] font-bold px-2 py-0.5 rounded-md">⚡ 2 phút xong</span>
                         </div>
-                        <div class="p-3">
-                            <h3 class="font-bold text-gray-800 text-sm line-clamp-1">${item.name}</h3>
-                            <p class="text-[11px] text-gray-500 mt-1 mb-2 h-8 line-clamp-2">${item.description}</p>
+                        <div class="p-3.5">
+                            <h4 class="font-black text-gray-800 text-sm">${item.name}</h4>
+                            <p class="text-[11px] text-gray-500 mt-1 mb-2 h-7 line-clamp-2">${item.description}</p>
+                            <p class="text-[10px] text-amber-700 font-semibold bg-amber-50 px-2 py-0.5 rounded w-max">💚 Chuẩn bị nhanh – không sợ muộn học</p>
                         </div>
                     </div>
-                    <div class="p-3 pt-0 flex justify-between items-center">
-                        <span class="text-orange-600 font-black text-sm">${item.price.toLocaleString()} đ</span>
-                        <button onclick="addToCart('${item.id}')" class="bg-orange-500 hover:bg-orange-600 text-white text-xs font-semibold px-2.5 py-1.5 rounded-lg shadow transition flex items-center gap-1">
-                            <i class="fa-solid fa-cart-plus"></i> Mua
+                    <div class="p-3.5 pt-0 flex justify-between items-center border-t border-gray-50 mt-2">
+                        <span class="text-orange-600 font-black text-base">${item.price.toLocaleString()} đ</span>
+                        <button onclick="addToCart('${item.id}')" class="bg-orange-500 hover:bg-orange-600 text-white text-xs font-black px-3 py-1.5 rounded-xl shadow transition flex items-center gap-1">
+                            <i class="fa-solid fa-cart-plus"></i> Chọn Mua
                         </button>
                     </div>
                 </div>
             `).join('');
-        }
-
-        function getCatBadge(cat) {
-            if (cat === 'MAN') return '🍱 Món mặn';
-            if (cat === 'NGOT') return '🍰 Món ngọt';
-            return '🥤 Đồ uống';
         }
 
         function addToCart(id) {
@@ -419,12 +488,8 @@
             const totalEl = document.getElementById('cart-total-price');
 
             const totalCount = cart.reduce((sum, i) => sum + i.quantity, 0);
-            if (totalCount > 0) {
-                badge.innerText = totalCount;
-                badge.classList.remove('hidden');
-            } else {
-                badge.classList.add('hidden');
-            }
+            if (totalCount > 0) { badge.innerText = totalCount; badge.classList.remove('hidden'); }
+            else { badge.classList.add('hidden'); }
 
             if (cart.length === 0) {
                 list.innerHTML = `<p class="text-gray-400 text-center py-8 text-sm">Chưa có món ăn nào trong giỏ</p>`;
@@ -469,33 +534,18 @@
             const note = document.getElementById('order-cust-note').value;
 
             let cust = customers.find(c => c.phone === phone);
-            if (!cust) {
-                cust = { id: `c_${Date.now()}`, name, phone, address };
-                customers.push(cust);
-            }
+            if (!cust) { cust = { id: `c_${Date.now()}`, name, phone, address }; customers.push(cust); }
 
             const orderId = `ORD-${Math.floor(1000 + Math.random() * 9000)}`;
             const totalAmount = cart.reduce((s, i) => s + (i.price * i.quantity), 0);
             const today = new Date().toISOString().split('T')[0];
 
             const newOrder = {
-                id: orderId,
-                customerId: cust.id,
-                customerName: name,
-                phone,
-                address,
-                note,
-                totalAmount,
-                status: "PENDING",
-                date: today,
+                id: orderId, customerId: cust.id, customerName: name, phone, address, note, totalAmount, status: "PENDING", date: today,
                 items: cart.map(c => ({ menuItemId: c.id, name: c.name, price: c.price, quantity: c.quantity, subtotal: c.price * c.quantity }))
             };
 
-            orders.unshift(newOrder);
-            cart = [];
-            renderCart();
-            document.querySelector('#page-cart form').reset();
-
+            orders.unshift(newOrder); cart = []; renderCart(); document.querySelector('#page-cart form').reset();
             showOrderDetail(orderId);
         }
 
@@ -523,13 +573,8 @@
 
         function getStatusText(st) {
             switch(st) {
-                case 'PENDING': return 'Mới';
-                case 'CONFIRMED': return 'Đã xác nhận';
-                case 'PREPARING': return 'Đang chuẩn bị';
-                case 'SHIPPING': return 'Đã giao';
-                case 'COMPLETED': return 'Hoàn thành';
-                case 'CANCELLED': return 'Đã hủy';
-                default: return st;
+                case 'PENDING': return 'Mới'; case 'CONFIRMED': return 'Đã xác nhận'; case 'PREPARING': return 'Đang chuẩn bị';
+                case 'SHIPPING': return 'Đã giao'; case 'COMPLETED': return 'Hoàn thành'; case 'CANCELLED': return 'Đã hủy'; default: return st;
             }
         }
 
@@ -539,7 +584,7 @@
                 <tr class="hover:bg-gray-50">
                     <td class="p-3"><img src="${i.image}" class="w-10 h-10 object-cover rounded"></td>
                     <td class="p-3 font-semibold">${i.name}</td>
-                    <td class="p-3 text-xs"><span class="bg-gray-100 px-2 py-1 rounded">${getCatBadge(i.cat)}</span></td>
+                    <td class="p-3 text-xs">${i.cat}</td>
                     <td class="p-3 font-bold text-orange-600">${i.price.toLocaleString()} đ</td>
                     <td class="p-3">
                         <button onclick="toggleMenuStatus('${i.id}')" class="px-2 py-1 rounded text-xs font-bold ${i.status === 'AVAILABLE' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}">
@@ -556,19 +601,11 @@
 
         function toggleMenuStatus(id) {
             const item = menuItems.find(i => i.id === id);
-            if (item) {
-                item.status = item.status === 'AVAILABLE' ? 'OUT_OF_STOCK' : 'AVAILABLE';
-                renderAdminMenu();
-                renderCustomerMenu();
-            }
+            if (item) { item.status = item.status === 'AVAILABLE' ? 'OUT_OF_STOCK' : 'AVAILABLE'; renderAdminMenu(); renderCustomerMenu(); }
         }
 
         function deleteMenuItem(id) {
-            if (confirm("Bạn muốn xóa món này?")) {
-                menuItems = menuItems.filter(i => i.id !== id);
-                renderAdminMenu();
-                renderCustomerMenu();
-            }
+            if (confirm("Bạn muốn xóa món này?")) { menuItems = menuItems.filter(i => i.id !== id); renderAdminMenu(); renderCustomerMenu(); }
         }
 
         function openMenuModal(id = null) {
@@ -584,12 +621,9 @@
                 document.getElementById('menu-image').value = item.image;
             } else {
                 document.getElementById('modal-menu-title').innerText = "Thêm Món Mới";
-                document.getElementById('menu-id').value = '';
-                document.getElementById('menu-name').value = '';
-                document.getElementById('menu-cat').value = 'MAN';
-                document.getElementById('menu-desc').value = '';
-                document.getElementById('menu-price').value = '';
-                document.getElementById('menu-image').value = '';
+                document.getElementById('menu-id').value = ''; document.getElementById('menu-name').value = '';
+                document.getElementById('menu-cat').value = 'MAN'; document.getElementById('menu-desc').value = '';
+                document.getElementById('menu-price').value = ''; document.getElementById('menu-image').value = '';
             }
         }
 
@@ -608,12 +642,10 @@
                 const item = menuItems.find(i => i.id === id);
                 item.name = name; item.cat = cat; item.description = description; item.price = price; item.image = image;
             } else {
-                menuItems.push({ id: Date.now().toString(), cat, name, description, price, image, status: 'AVAILABLE' });
+                menuItems.push({ id: Date.now().toString(), cat, name, description, price, image, status: 'AVAILABLE', isHot: false });
             }
 
-            closeMenuModal();
-            renderAdminMenu();
-            renderCustomerMenu();
+            closeMenuModal(); renderAdminMenu(); renderCustomerMenu();
         }
 
         function renderAdminOrders() {
@@ -644,10 +676,7 @@
 
         function updateOrderStatus(orderId, newStatus) {
             const order = orders.find(o => o.id === orderId);
-            if (order) {
-                order.status = newStatus;
-                renderAdminOrders();
-            }
+            if (order) { order.status = newStatus; renderAdminOrders(); }
         }
 
         function viewAdminOrderDetail(orderId) {
@@ -657,7 +686,7 @@
             content.innerHTML = `
                 <div><b>Mã đơn:</b> ${order.id}</div>
                 <div><b>Khách hàng:</b> ${order.customerName} (${order.phone})</div>
-                <div><b>Địa chỉ / Lớp:</b> ${order.address}</div>
+                <div><b>Địa chỉ / Cổng trường:</b> ${order.address}</div>
                 <div><b>Ghi chú:</b> ${order.note || 'Không có'}</div>
                 <div><b>Trạng thái:</b> ${getStatusText(order.status)}</div>
                 <div class="border-t pt-2 mt-2"><b>Danh sách món:</b></div>
@@ -688,7 +717,6 @@
 
         function renderAnalytics() {
             document.getElementById('stat-total-orders').innerText = orders.length;
-
             const completedOrders = orders.filter(o => o.status === 'COMPLETED');
             const totalRevenue = completedOrders.reduce((s, o) => s + o.totalAmount, 0);
             document.getElementById('stat-total-revenue').innerText = `${totalRevenue.toLocaleString()} đ`;
@@ -697,17 +725,10 @@
             document.getElementById('stat-avg-order').innerText = `${avgOrder.toLocaleString()} đ`;
 
             const itemCounts = {};
-            completedOrders.forEach(o => {
-                o.items.forEach(i => {
-                    itemCounts[i.name] = (itemCounts[i.name] || 0) + i.quantity;
-                });
-            });
+            completedOrders.forEach(o => { o.items.forEach(i => { itemCounts[i.name] = (itemCounts[i.name] || 0) + i.quantity; }); });
 
-            let topItem = '-';
-            let maxQty = 0;
-            for (const [name, qty] of Object.entries(itemCounts)) {
-                if (qty > maxQty) { maxQty = qty; topItem = `${name} (${qty} cái)`; }
-            }
+            let topItem = '-'; let maxQty = 0;
+            for (const [name, qty] of Object.entries(itemCounts)) { if (qty > maxQty) { maxQty = qty; topItem = `${name} (${qty} cái)`; } }
             document.getElementById('stat-top-item').innerText = topItem;
 
             const ctx = document.getElementById('revenueChart').getContext('2d');
@@ -717,17 +738,9 @@
                 type: 'bar',
                 data: {
                     labels: ['2026-10-07', '2026-10-08', 'Hôm nay'],
-                    datasets: [{
-                        label: 'Doanh thu (VNĐ)',
-                        data: [150000, 180000, totalRevenue],
-                        backgroundColor: '#f97316'
-                    }]
+                    datasets: [{ label: 'Doanh thu (VNĐ)', data: [150000, 180000, totalRevenue], backgroundColor: '#f97316' }]
                 },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: { y: { beginAtZero: true } }
-                }
+                options: { responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: true } } }
             });
         }
     </script>
