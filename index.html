@@ -3,25 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bánh Mì Mẹ Tôm Tép - Hệ Thống Bán Hàng & Quản Lý</title>
+    <title>Bánh Mì Mẹ Tôm Tép - Bữa Sáng Yêu Thương Cùng Con Tới Trường</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body class="bg-gray-50 text-gray-800 pb-12">
 
-    <!-- Header Banner -->
+    <!-- Header Banner & Slogan -->
     <header class="bg-gradient-to-r from-orange-600 to-amber-500 text-white py-4 px-4 shadow-md sticky top-0 z-40">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-3">
-            <div>
-                <h1 class="text-2xl font-extrabold flex items-center gap-2">
+            <div class="text-center md:text-left">
+                <h1 class="text-2xl font-extrabold flex items-center justify-center md:justify-start gap-2">
                     <i class="fa-solid fa-bread-slice text-amber-200"></i> BÁNH MÌ MẸ TÔM TÉP
                 </h1>
-                <p class="text-orange-100 text-xs">Hệ thống đặt hàng & Quản lý bán hàng Bánh mì Mẹ Tôm Tép</p>
+                <p class="text-amber-100 text-xs font-semibold mt-0.5 tracking-wide italic">
+                    <i class="fa-solid fa-heart text-red-300"></i> Slogan: "Bữa sáng yêu thương - Cùng con tới trường"
+                </p>
             </div>
             
             <!-- Navigation Menu -->
-            <nav class="flex flex-wrap gap-2 bg-white/20 p-1 rounded-lg backdrop-blur-md text-xs font-bold">
+            <nav class="flex flex-wrap justify-center gap-2 bg-white/20 p-1 rounded-lg backdrop-blur-md text-xs font-bold">
                 <button id="nav-customer" onclick="switchPage('customer')" class="px-3 py-2 rounded-md bg-white text-orange-600 shadow">
                     <i class="fa-solid fa-store"></i> Thực Đơn
                 </button>
@@ -47,23 +49,34 @@
 
     <main class="max-w-7xl mx-auto px-4 mt-6">
 
-        <!-- 1. TRANG KHÁCH HÀNG: DẠNG GRID RESPONSIVE -->
+        <!-- 1. TRANG KHÁCH HÀNG: THỰC ĐƠN PHONG PHÚ -->
         <section id="page-customer" class="page-content">
-            <h2 class="text-xl font-bold text-gray-800 mb-4 border-b pb-2 flex items-center gap-2">
-                <i class="fa-solid fa-fire text-orange-500"></i> Thực Đơn Bánh Mì Đang Bán
-            </h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="customer-menu-grid"></div>
+            <!-- Cam kết chất lượng -->
+            <div class="bg-amber-50 border border-amber-200 rounded-xl p-3 mb-6 flex flex-wrap justify-around text-xs font-semibold text-amber-900 gap-2">
+                <span class="flex items-center gap-1"><i class="fa-solid fa-shield-heart text-orange-500"></i> Đóng gói sạch sẽ, vừa đi vừa ăn</span>
+                <span class="flex items-center gap-1"><i class="fa-solid fa-tags text-orange-500"></i> Giá hợp lý 5k - 15k / món</span>
+                <span class="flex items-center gap-1"><i class="fa-solid fa-rotate text-orange-500"></i> Thực đơn đổi mới không lo bị ngán</span>
+            </div>
+
+            <!-- Thanh Lọc Danh Mục Món -->
+            <div class="flex flex-wrap gap-2 mb-6 border-b pb-3">
+                <button onclick="filterCategory('ALL')" class="cat-btn bg-orange-500 text-white px-4 py-2 rounded-full text-xs font-bold shadow">Tất Cả Món</button>
+                <button onclick="filterCategory('MAN')" class="cat-btn bg-gray-200 text-gray-700 hover:bg-orange-100 px-4 py-2 rounded-full text-xs font-bold">🍱 Món Mặn Tiện Lợi (10k - 15k)</button>
+                <button onclick="filterCategory('NGOT')" class="cat-btn bg-gray-200 text-gray-700 hover:bg-orange-100 px-4 py-2 rounded-full text-xs font-bold">🍰 Món Ngọt Nhẹ Nhàng (5k - 10k)</button>
+                <button onclick="filterCategory('DUONG')" class="cat-btn bg-gray-200 text-gray-700 hover:bg-orange-100 px-4 py-2 rounded-full text-xs font-bold">🥤 Đồ Uống Đi Kèm (5k - 10k)</button>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5" id="customer-menu-grid"></div>
         </section>
 
-        <!-- 2. TRANG GIỎ HÀNG & ĐẶT HÀNG (/cart) -->
+        <!-- 2. TRANG GIỎ HÀNG (/cart) -->
         <section id="page-cart" class="page-content hidden">
             <h2 class="text-xl font-bold text-gray-800 mb-4 border-b pb-2 flex items-center gap-2">
                 <i class="fa-solid fa-shopping-cart text-orange-500"></i> Giỏ Hàng & Thanh Toán
             </h2>
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <!-- Danh sách món trong giỏ -->
                 <div class="lg:col-span-2 bg-white rounded-xl shadow-sm border p-4">
-                    <h3 class="font-bold text-gray-700 mb-3">Các món đã chọn</h3>
+                    <h3 class="font-bold text-gray-700 mb-3">Các món đã chọn cho bé</h3>
                     <div id="cart-list" class="divide-y"></div>
                     <div class="flex justify-between items-center pt-4 border-t mt-4">
                         <span class="font-bold text-gray-700">Tổng cộng:</span>
@@ -71,28 +84,27 @@
                     </div>
                 </div>
 
-                <!-- Form thông tin đặt hàng -->
                 <div class="bg-white rounded-xl shadow-sm border p-4">
-                    <h3 class="font-bold text-gray-700 mb-3">Thông tin giao hàng</h3>
+                    <h3 class="font-bold text-gray-700 mb-3">Thông tin nhận hàng</h3>
                     <form onsubmit="handlePlaceOrder(event)" class="space-y-3">
                         <div>
-                            <label class="block text-xs font-semibold mb-1">Họ và tên *</label>
+                            <label class="block text-xs font-semibold mb-1">Tên Phụ huynh / Học sinh *</label>
                             <input type="text" id="order-cust-name" required placeholder="Nguyễn Văn A" class="w-full px-3 py-2 text-sm border rounded-lg focus:ring-2 focus:ring-orange-500 outline-none">
                         </div>
                         <div>
-                            <label class="block text-xs font-semibold mb-1">Số điện thoại *</label>
+                            <label class="block text-xs font-semibold mb-1">Số điện thoại liên hệ *</label>
                             <input type="tel" id="order-cust-phone" required pattern="[0-9]{10,11}" placeholder="0900000001" class="w-full px-3 py-2 text-sm border rounded-lg focus:ring-2 focus:ring-orange-500 outline-none">
                         </div>
                         <div>
-                            <label class="block text-xs font-semibold mb-1">Địa chỉ giao hàng *</label>
-                            <input type="text" id="order-cust-address" required placeholder="123 Đường ABC, Quận 1" class="w-full px-3 py-2 text-sm border rounded-lg focus:ring-2 focus:ring-orange-500 outline-none">
+                            <label class="block text-xs font-semibold mb-1">Địa chỉ giao / Lớp học *</label>
+                            <input type="text" id="order-cust-address" required placeholder="Cổng Trường Tiểu Học ABC / Cổng A" class="w-full px-3 py-2 text-sm border rounded-lg focus:ring-2 focus:ring-orange-500 outline-none">
                         </div>
                         <div>
-                            <label class="block text-xs font-semibold mb-1">Ghi chú đơn hàng</label>
-                            <textarea id="order-cust-note" rows="2" placeholder="Ví dụ: Không ăn ớt, giao giờ hành chính..." class="w-full px-3 py-2 text-sm border rounded-lg focus:ring-2 focus:ring-orange-500 outline-none"></textarea>
+                            <label class="block text-xs font-semibold mb-1">Ghi chú (Ví dụ: Giao trước 7h15, không cay...)</label>
+                            <textarea id="order-cust-note" rows="2" class="w-full px-3 py-2 text-sm border rounded-lg focus:ring-2 focus:ring-orange-500 outline-none"></textarea>
                         </div>
                         <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-lg shadow transition flex items-center justify-center gap-2">
-                            <i class="fa-solid fa-check-circle"></i> ĐẶT HÀNG NGAY
+                            <i class="fa-solid fa-check-circle"></i> XÁC NHẬN ĐẶT ĐƠN
                         </button>
                     </form>
                 </div>
@@ -111,11 +123,11 @@
                     <div class="flex justify-between"><span class="text-gray-500">Trạng thái:</span><span id="detail-order-status" class="font-bold px-2 py-0.5 rounded text-xs bg-orange-100 text-orange-700"></span></div>
                     <div class="flex justify-between"><span class="text-gray-500">Khách hàng:</span><span id="detail-cust-name" class="font-semibold"></span></div>
                     <div class="flex justify-between"><span class="text-gray-500">Số điện thoại:</span><span id="detail-cust-phone"></span></div>
-                    <div class="flex justify-between"><span class="text-gray-500">Địa chỉ:</span><span id="detail-cust-address"></span></div>
+                    <div class="flex justify-between"><span class="text-gray-500">Địa chỉ giao:</span><span id="detail-cust-address"></span></div>
                     <div class="flex justify-between"><span class="text-gray-500">Ghi chú:</span><span id="detail-cust-note" class="italic"></span></div>
                 </div>
                 <div class="border-t pt-3 mb-4">
-                    <h4 class="font-bold text-xs text-gray-700 uppercase mb-2">Chi tiết món đã đặt</h4>
+                    <h4 class="font-bold text-xs text-gray-700 uppercase mb-2">Chi tiết món đã chọn</h4>
                     <div id="detail-items-list" class="space-y-1 text-sm divide-y"></div>
                     <div class="flex justify-between font-bold text-base pt-3 border-t mt-2">
                         <span>Tổng tiền:</span>
@@ -126,7 +138,7 @@
             </div>
         </section>
 
-        <!-- 4. TRANG ADMIN: QUẢN LÝ MENU (/admin/menu) -->
+        <!-- 4. TRANG ADMIN: QUẢN LÝ MENU -->
         <section id="page-admin-menu" class="page-content hidden">
             <div class="flex justify-between items-center mb-4">
                 <h2 class="text-xl font-bold text-gray-800"><i class="fa-solid fa-list-check text-orange-500"></i> Quản Lý Món Ăn</h2>
@@ -140,7 +152,7 @@
                         <tr>
                             <th class="p-3">Hình ảnh</th>
                             <th class="p-3">Tên món</th>
-                            <th class="p-3">Mô tả</th>
+                            <th class="p-3">Loại món</th>
                             <th class="p-3">Giá bán</th>
                             <th class="p-3">Trạng thái</th>
                             <th class="p-3 text-center">Thao tác</th>
@@ -151,7 +163,7 @@
             </div>
         </section>
 
-        <!-- 5. TRANG ADMIN: QUẢN LÝ ĐƠN HÀNG (/admin/orders) -->
+        <!-- 5. TRANG ADMIN: QUẢN LÝ ĐƠN HÀNG -->
         <section id="page-admin-orders" class="page-content hidden">
             <h2 class="text-xl font-bold text-gray-800 mb-4"><i class="fa-solid fa-boxes-packing text-orange-500"></i> Quản Lý Đơn Hàng</h2>
             <div class="bg-white rounded-xl shadow-sm border overflow-x-auto">
@@ -172,7 +184,7 @@
             </div>
         </section>
 
-        <!-- 6. TRANG ADMIN: QUẢN LÝ KHÁCH HÀNG (/admin/customers) -->
+        <!-- 6. TRANG ADMIN: KHÁCH HÀNG -->
         <section id="page-admin-customers" class="page-content hidden">
             <h2 class="text-xl font-bold text-gray-800 mb-4"><i class="fa-solid fa-users text-orange-500"></i> Danh Sách Khách Hàng</h2>
             <div class="bg-white rounded-xl shadow-sm border overflow-x-auto">
@@ -181,7 +193,7 @@
                         <tr>
                             <th class="p-3">Tên khách hàng</th>
                             <th class="p-3">Số điện thoại</th>
-                            <th class="p-3">Địa chỉ</th>
+                            <th class="p-3">Địa chỉ / Lớp</th>
                             <th class="p-3 text-center">Số đơn đã đặt</th>
                             <th class="p-3 text-right">Tổng chi tiêu</th>
                         </tr>
@@ -191,11 +203,9 @@
             </div>
         </section>
 
-        <!-- 7. TRANG ADMIN: DASHBOARD BÁO CÁO DOANH THU (/admin/analytics) -->
+        <!-- 7. TRANG ADMIN: DASHBOARD BÁO CÁO -->
         <section id="page-admin-analytics" class="page-content hidden">
-            <h2 class="text-xl font-bold text-gray-800 mb-4"><i class="fa-solid fa-chart-pie text-orange-500"></i> Báo Cáo & Thống Kê</h2>
-            
-            <!-- Metrics Cards -->
+            <h2 class="text-xl font-bold text-gray-800 mb-4"><i class="fa-solid fa-chart-pie text-orange-500"></i> Báo Cáo & Thống Kê Doanh Thu</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
                 <div class="bg-white p-4 rounded-xl border shadow-sm">
                     <div class="text-xs font-semibold text-gray-500 uppercase">Tổng số đơn hàng</div>
@@ -215,7 +225,6 @@
                 </div>
             </div>
 
-            <!-- Chart -->
             <div class="bg-white p-5 rounded-xl border shadow-sm">
                 <h3 class="font-bold text-gray-700 text-sm mb-4">Doanh Thu Theo Ngày (Chỉ tính đơn Hoàn thành)</h3>
                 <div class="h-64">
@@ -233,18 +242,26 @@
             <form onsubmit="handleSaveMenuItem(event)" class="space-y-3">
                 <input type="hidden" id="menu-id">
                 <div><label class="block text-xs font-semibold">Tên món</label><input type="text" id="menu-name" required class="w-full px-3 py-2 text-sm border rounded"></div>
+                <div>
+                    <label class="block text-xs font-semibold">Danh mục món</label>
+                    <select id="menu-cat" class="w-full px-3 py-2 text-sm border rounded">
+                        <option value="MAN">Món Mặn Tiện Lợi</option>
+                        <option value="NGOT">Món Ngọt Nhẹ Nhàng</option>
+                        <option value="DUONG">Đồ Uống Đi Kèm</option>
+                    </select>
+                </div>
                 <div><label class="block text-xs font-semibold">Mô tả</label><textarea id="menu-desc" rows="2" class="w-full px-3 py-2 text-sm border rounded"></textarea></div>
                 <div><label class="block text-xs font-semibold">Giá bán (đ)</label><input type="number" id="menu-price" required class="w-full px-3 py-2 text-sm border rounded"></div>
                 <div><label class="block text-xs font-semibold">Link Hình ảnh</label><input type="url" id="menu-image" required class="w-full px-3 py-2 text-sm border rounded"></div>
                 <div class="flex justify-end gap-2 pt-2">
                     <button type="button" onclick="closeMenuModal()" class="px-4 py-2 border rounded text-xs font-semibold">Hủy</button>
-                    <button type="submit" class="px-4 py-2 bg-orange-500 text-white rounded text-xs font-semibold">Lưu</button>
+                    <button type="submit" class="px-4 py-2 bg-orange-500 text-white rounded text-xs font-semibold">Lưu Món</button>
                 </div>
             </form>
         </div>
     </div>
 
-    <!-- Modal Xem Chi Tiết Đơn Hàng Admin -->
+    <!-- Modal Chi Tiết Admin -->
     <div id="modal-order-admin" class="fixed inset-0 bg-black/50 hidden flex items-center justify-center p-4 z-50">
         <div class="bg-white rounded-xl max-w-lg w-full p-6 shadow-xl">
             <h3 class="text-lg font-bold mb-2">Chi Tiết Đơn Hàng Admin</h3>
@@ -255,49 +272,57 @@
         </div>
     </div>
 
-    <!-- Footer tuyên bố cá nhân -->
     <footer class="text-center text-xs text-gray-400 mt-12 py-4 border-t">
         Dự án cá nhân phục vụ cuộc thi Vibe Coding - Phase 2
     </footer>
 
-    <!-- SCRIPT XỬ LÝ TOÀN BỘ LOGIC DỮ LIỆU & GIAO DIỆN -->
     <script>
-        // Dữ liệu ban đầu
+        // Danh sách Món ăn Đa dạng (Món mặn, Món ngọt, Đồ uống giá 5k - 15k)
         let menuItems = [
-            { id: "1", name: "Bánh Mì Thịt Nướng Mẹ Tôm", description: "Thịt heo nướng sả thơm lừng, kèm dưa góp giòn rụm và sốt đậm đà.", price: 25000, image: "https://images.unsplash.com/photo-1626804475297-4160820cca34?auto=format&fit=crop&w=600&q=80", status: "AVAILABLE" },
-            { id: "2", name: "Bánh Mì Trứng Ốp La Ốp", description: "Trứng ốp la 2 quả lòng đào, pate nhà làm béo ngậy và rau thơm.", price: 20000, image: "https://images.unsplash.com/photo-1509722747041-616f39b57569?auto=format&fit=crop&w=600&q=80", status: "AVAILABLE" },
-            { id: "3", name: "Bánh Mì Thập Cẩm Mẹ Làm", description: "Chả lụa, xá xíu, pate, bơ trứng tươi và ớt sừng cay nhẹ chuẩn vị.", price: 30000, image: "https://images.unsplash.com/photo-1549611016-3a70d82b5040?auto=format&fit=crop&w=600&q=80", status: "AVAILABLE" },
-            { id: "4", name: "Bánh Mì Xíu Mại Sốt Cà", description: "Xíu mại viên to mềm mọng nước, sốt cà chua đậm đà kèm dưa leo.", price: 25000, image: "https://images.unsplash.com/photo-1509722747041-616f39b57569?auto=format&fit=crop&w=600&q=80", status: "AVAILABLE" },
-            { id: "5", name: "Bánh Mì Bơ Tỏi Nướng", description: "Bánh mì nướng bơ tỏi giòn tan thơm phức đặc biệt.", price: 18000, image: "https://images.unsplash.com/photo-1626804475297-4160820cca34?auto=format&fit=crop&w=600&q=80", status: "OUT_OF_STOCK" }
+            // MÓN MẶN TIỆN LỢI
+            { id: "1", cat: "MAN", name: "Bánh Mì Kẹp Thập Cẩm Mini", description: "Trứng, xúc xích, chả, pate nhà làm đóng túi giấy sạch sẽ.", price: 15000, image: "https://images.unsplash.com/photo-1626804475297-4160820cca34?auto=format&fit=crop&w=500&q=80", status: "AVAILABLE" },
+            { id: "2", cat: "MAN", name: "Xôi Gói Nhỏ Thần Thánh", description: "Xôi dẻo quánh topping xôi thịt, ruốc bơ hoặc xôi ngô ngọt.", price: 12000, image: "https://images.unsplash.com/photo-1541832676-9b763b0239ab?auto=format&fit=crop&w=500&q=80", status: "AVAILABLE" },
+            { id: "3", cat: "MAN", name: "Bánh Bao Nhân Thịt Trứng Cút", description: "Bánh bao nóng hổi mọng nước, cầm vừa tay cho bé vừa đi vừa ăn.", price: 12000, image: "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=500&q=80", status: "AVAILABLE" },
+            { id: "4", cat: "MAN", name: "Cơm Nắm Kẹp Ruốc Xúc Xích", description: "Cơm dẻo cuộn lá rong biển kẹp ruốc gà cay nhẹ hoặc xúc xích.", price: 10000, image: "https://images.unsplash.com/photo-1516684732162-798a0062be99?auto=format&fit=crop&w=500&q=80", status: "AVAILABLE" },
+
+            // MÓN NGỌT NHẸ NHÀNG
+            { id: "5", cat: "NGOT", name: "Bánh Rán Nhân Đậu Xanh / Đường", description: "Bánh rán giòn rụm bọc đường hoặc vừng thơm lừng.", price: 5000, image: "https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?auto=format&fit=crop&w=500&q=80", status: "AVAILABLE" },
+            { id: "6", cat: "NGOT", name: "Bánh Su Kem / Bông Lan Mini", description: "Set 2 chiếc bánh bông lan mềm mịn béo ngậy kem tươi.", price: 8000, image: "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=500&q=80", status: "AVAILABLE" },
+            { id: "7", cat: "NGOT", name: "Chuối / Khoai Nướng Gói Giấy", description: "Khoai mật / chuối nướng bọc giấy bạc ấm nóng thơm phức.", price: 10000, image: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=500&q=80", status: "AVAILABLE" },
+            { id: "8", cat: "NGOT", name: "Sữa Chua Túi Đáng Yêu", description: "Sữa chua lên men tự nhiên dạng túi tiện lợi bóp ăn ngay.", price: 5000, image: "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=500&q=80", status: "AVAILABLE" },
+
+            // ĐỒ UỐNG ĐI KÈM
+            { id: "9", cat: "DUONG", name: "Nước Cam Ép Chai Mini (250ml)", description: "Cam tươi nguyên chất giàu Vitamin C cho bé tỉnh táo cả ngày.", price: 10000, image: "https://images.unsplash.com/photo-1613478223719-2ab802602423?auto=format&fit=crop&w=500&q=80", status: "AVAILABLE" },
+            { id: "10", cat: "DUONG", name: "Sữa Tươi Hộp Nhỏ Lúa Mạch", description: "Sữa tươi tiệt trùng thơm ngon bổ sung năng lượng học tập.", price: 8000, image: "https://images.unsplash.com/photo-1563636619-e9143da7973b?auto=format&fit=crop&w=500&q=80", status: "AVAILABLE" },
+            { id: "11", cat: "DUONG", name: "Trà Chanh / Chanh Muối Bottled", description: "Nước giải khát chanh muối đóng chai mát lạnh dễ mang đi.", price: 7000, image: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=500&q=80", status: "AVAILABLE" }
         ];
 
         let customers = [
-            { id: "c1", name: "Nguyễn Văn A", phone: "0900000001", address: "123 Đường ABC, Hà Nội" },
-            { id: "c2", name: "Trần Thị B", phone: "0900000002", address: "456 Đường XYZ, TP.HCM" }
+            { id: "c1", name: "Nguyễn Văn A", phone: "0900000001", address: "Cổng Trường Tiểu Học ABC" }
         ];
 
         let orders = [
             {
-                id: "ORD-8821",
+                id: "ORD-9912",
                 customerId: "c1",
                 customerName: "Nguyễn Văn A",
                 phone: "0900000001",
-                address: "123 Đường ABC, Hà Nội",
-                note: "Ít cay",
-                totalAmount: 55000,
+                address: "Cổng Trường Tiểu Học ABC",
+                note: "Cho con học lớp 3B",
+                totalAmount: 23000,
                 status: "COMPLETED",
-                date: "2026-10-07",
+                date: "2026-10-09",
                 items: [
-                    { menuItemId: "1", name: "Bánh Mì Thịt Nướng Mẹ Tôm", price: 25000, quantity: 1, subtotal: 25000 },
-                    { menuItemId: "3", name: "Bánh Mì Thập Cẩm Mẹ Làm", price: 30000, quantity: 1, subtotal: 30000 }
+                    { menuItemId: "1", name: "Bánh Mì Kẹp Thập Cẩm Mini", price: 15000, quantity: 1, subtotal: 15000 },
+                    { menuItemId: "10", name: "Sữa Tươi Hộp Nhỏ Lúa Mạch", price: 8000, quantity: 1, subtotal: 8000 }
                 ]
             }
         ];
 
         let cart = [];
+        let currentCat = 'ALL';
         let chartInstance = null;
 
-        // Khởi tạo
         document.addEventListener("DOMContentLoaded", () => {
             renderCustomerMenu();
             renderCart();
@@ -307,12 +332,10 @@
             renderAnalytics();
         });
 
-        // Chuyển trang SPA
         function switchPage(pageId) {
             document.querySelectorAll('.page-content').forEach(el => el.classList.add('hidden'));
             document.getElementById(`page-${pageId}`).classList.remove('hidden');
 
-            // Cập nhật style nút Menu Nav
             ['customer', 'cart', 'admin-menu', 'admin-orders', 'admin-customers', 'admin-analytics'].forEach(p => {
                 const btn = document.getElementById(`nav-${p}`);
                 if (btn) {
@@ -327,30 +350,52 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // 1. Render Menu Khách
+        function filterCategory(cat) {
+            currentCat = cat;
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                btn.className = "cat-btn bg-gray-200 text-gray-700 hover:bg-orange-100 px-4 py-2 rounded-full text-xs font-bold";
+            });
+            event.target.className = "cat-btn bg-orange-500 text-white px-4 py-2 rounded-full text-xs font-bold shadow";
+            renderCustomerMenu();
+        }
+
         function renderCustomerMenu() {
             const grid = document.getElementById('customer-menu-grid');
-            const available = menuItems.filter(i => i.status === 'AVAILABLE');
-            grid.innerHTML = available.map(item => `
-                <div class="bg-white rounded-xl shadow-sm border overflow-hidden flex flex-col justify-between">
+            let filtered = menuItems.filter(i => i.status === 'AVAILABLE');
+            if (currentCat !== 'ALL') {
+                filtered = filtered.filter(i => i.cat === currentCat);
+            }
+
+            grid.innerHTML = filtered.map(item => `
+                <div class="bg-white rounded-xl shadow-sm border overflow-hidden flex flex-col justify-between hover:shadow-md transition">
                     <div>
-                        <img src="${item.image}" class="w-full h-44 object-cover">
-                        <div class="p-4">
-                            <h3 class="font-bold text-gray-800 text-base">${item.name}</h3>
-                            <p class="text-xs text-gray-500 mt-1 mb-3">${item.description}</p>
+                        <div class="relative">
+                            <img src="${item.image}" class="w-full h-36 object-cover">
+                            <span class="absolute top-2 left-2 bg-orange-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow">
+                                ${getCatBadge(item.cat)}
+                            </span>
+                        </div>
+                        <div class="p-3">
+                            <h3 class="font-bold text-gray-800 text-sm line-clamp-1">${item.name}</h3>
+                            <p class="text-[11px] text-gray-500 mt-1 mb-2 h-8 line-clamp-2">${item.description}</p>
                         </div>
                     </div>
-                    <div class="p-4 pt-0 flex justify-between items-center">
-                        <span class="text-orange-600 font-extrabold text-base">${item.price.toLocaleString()} đ</span>
-                        <button onclick="addToCart('${item.id}')" class="bg-orange-500 hover:bg-orange-600 text-white text-xs font-semibold px-3 py-2 rounded-lg shadow transition flex items-center gap-1">
-                            <i class="fa-solid fa-cart-plus"></i> Chọn mua
+                    <div class="p-3 pt-0 flex justify-between items-center">
+                        <span class="text-orange-600 font-black text-sm">${item.price.toLocaleString()} đ</span>
+                        <button onclick="addToCart('${item.id}')" class="bg-orange-500 hover:bg-orange-600 text-white text-xs font-semibold px-2.5 py-1.5 rounded-lg shadow transition flex items-center gap-1">
+                            <i class="fa-solid fa-cart-plus"></i> Mua
                         </button>
                     </div>
                 </div>
             `).join('');
         }
 
-        // 2. Logic Giỏ hàng
+        function getCatBadge(cat) {
+            if (cat === 'MAN') return '🍱 Món mặn';
+            if (cat === 'NGOT') return '🍰 Món ngọt';
+            return '🥤 Đồ uống';
+        }
+
         function addToCart(id) {
             const item = menuItems.find(i => i.id === id);
             const exist = cart.find(c => c.id === id);
@@ -364,9 +409,7 @@
             const item = cart.find(c => c.id === id);
             if (!item) return;
             item.quantity += delta;
-            if (item.quantity <= 0) {
-                cart = cart.filter(c => c.id !== id);
-            }
+            if (item.quantity <= 0) cart = cart.filter(c => c.id !== id);
             renderCart();
         }
 
@@ -384,7 +427,7 @@
             }
 
             if (cart.length === 0) {
-                list.innerHTML = `<p class="text-gray-400 text-center py-8 text-sm">Giỏ hàng của bạn đang trống</p>`;
+                list.innerHTML = `<p class="text-gray-400 text-center py-8 text-sm">Chưa có món ăn nào trong giỏ</p>`;
                 totalEl.innerText = `0 đ`;
                 return;
             }
@@ -396,19 +439,19 @@
                 return `
                     <div class="py-3 flex justify-between items-center text-sm">
                         <div class="flex items-center gap-3">
-                            <img src="${item.image}" class="w-12 h-12 object-cover rounded-lg">
+                            <img src="${item.image}" class="w-10 h-10 object-cover rounded-lg">
                             <div>
-                                <div class="font-bold text-gray-800">${item.name}</div>
-                                <div class="text-xs text-gray-500">${item.price.toLocaleString()} đ</div>
+                                <div class="font-bold text-gray-800 text-xs">${item.name}</div>
+                                <div class="text-[11px] text-gray-500">${item.price.toLocaleString()} đ</div>
                             </div>
                         </div>
-                        <div class="flex items-center gap-3">
+                        <div class="flex items-center gap-2">
                             <div class="flex items-center border rounded">
                                 <button type="button" onclick="updateCartQty('${item.id}', -1)" class="px-2 py-0.5 text-gray-600 hover:bg-gray-100 font-bold">-</button>
-                                <span class="px-3 text-xs font-bold">${item.quantity}</span>
+                                <span class="px-2 text-xs font-bold">${item.quantity}</span>
                                 <button type="button" onclick="updateCartQty('${item.id}', 1)" class="px-2 py-0.5 text-gray-600 hover:bg-gray-100 font-bold">+</button>
                             </div>
-                            <span class="font-bold text-orange-600 w-20 text-right">${sub.toLocaleString()} đ</span>
+                            <span class="font-bold text-orange-600 w-16 text-right text-xs">${sub.toLocaleString()} đ</span>
                         </div>
                     </div>
                 `;
@@ -416,17 +459,15 @@
             totalEl.innerText = `${total.toLocaleString()} đ`;
         }
 
-        // 3. Xử lý Đặt hàng
         function handlePlaceOrder(e) {
             e.preventDefault();
-            if (cart.length === 0) { alert("Vui lòng chọn ít nhất 1 món bánh mì!"); return; }
+            if (cart.length === 0) { alert("Vui lòng chọn ít nhất 1 món!"); return; }
 
             const name = document.getElementById('order-cust-name').value;
             const phone = document.getElementById('order-cust-phone').value;
             const address = document.getElementById('order-cust-address').value;
             const note = document.getElementById('order-cust-note').value;
 
-            // Tìm hoặc tạo Khách hàng
             let cust = customers.find(c => c.phone === phone);
             if (!cust) {
                 cust = { id: `c_${Date.now()}`, name, phone, address };
@@ -445,12 +486,12 @@
                 address,
                 note,
                 totalAmount,
-                status: "PENDING", // Mới
+                status: "PENDING",
                 date: today,
                 items: cart.map(c => ({ menuItemId: c.id, name: c.name, price: c.price, quantity: c.quantity, subtotal: c.price * c.quantity }))
             };
 
-            orders.unshift(newOrder); // Thêm lên đầu
+            orders.unshift(newOrder);
             cart = [];
             renderCart();
             document.querySelector('#page-cart form').reset();
@@ -467,7 +508,7 @@
             document.getElementById('detail-cust-name').innerText = order.customerName;
             document.getElementById('detail-cust-phone').innerText = order.phone;
             document.getElementById('detail-cust-address').innerText = order.address;
-            document.getElementById('detail-cust-note').innerText = order.note || 'Không có';
+            document.getElementById('detail-cust-note').innerText = order.note || 'Không';
             document.getElementById('detail-total-amount').innerText = `${order.totalAmount.toLocaleString()} đ`;
 
             document.getElementById('detail-items-list').innerHTML = order.items.map(i => `
@@ -492,18 +533,17 @@
             }
         }
 
-        // 4. Admin Quản lý Món
         function renderAdminMenu() {
             const tbody = document.getElementById('admin-menu-table');
             tbody.innerHTML = menuItems.map(i => `
                 <tr class="hover:bg-gray-50">
-                    <td class="p-3"><img src="${i.image}" class="w-12 h-12 object-cover rounded"></td>
+                    <td class="p-3"><img src="${i.image}" class="w-10 h-10 object-cover rounded"></td>
                     <td class="p-3 font-semibold">${i.name}</td>
-                    <td class="p-3 text-xs text-gray-500 max-w-xs truncate">${i.description}</td>
+                    <td class="p-3 text-xs"><span class="bg-gray-100 px-2 py-1 rounded">${getCatBadge(i.cat)}</span></td>
                     <td class="p-3 font-bold text-orange-600">${i.price.toLocaleString()} đ</td>
                     <td class="p-3">
                         <button onclick="toggleMenuStatus('${i.id}')" class="px-2 py-1 rounded text-xs font-bold ${i.status === 'AVAILABLE' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}">
-                            ${i.status === 'AVAILABLE' ? 'Còn bán' : 'Hết hàng'}
+                            ${i.status === 'AVAILABLE' ? 'Còn bán' : 'Hết'}
                         </button>
                     </td>
                     <td class="p-3 text-center">
@@ -535,9 +575,10 @@
             document.getElementById('modal-menu').classList.remove('hidden');
             if (id) {
                 const item = menuItems.find(i => i.id === id);
-                document.getElementById('modal-menu-title').innerText = "Sửa Món Bánh Mì";
+                document.getElementById('modal-menu-title').innerText = "Sửa Món";
                 document.getElementById('menu-id').value = item.id;
                 document.getElementById('menu-name').value = item.name;
+                document.getElementById('menu-cat').value = item.cat || 'MAN';
                 document.getElementById('menu-desc').value = item.description;
                 document.getElementById('menu-price').value = item.price;
                 document.getElementById('menu-image').value = item.image;
@@ -545,6 +586,7 @@
                 document.getElementById('modal-menu-title').innerText = "Thêm Món Mới";
                 document.getElementById('menu-id').value = '';
                 document.getElementById('menu-name').value = '';
+                document.getElementById('menu-cat').value = 'MAN';
                 document.getElementById('menu-desc').value = '';
                 document.getElementById('menu-price').value = '';
                 document.getElementById('menu-image').value = '';
@@ -557,15 +599,16 @@
             e.preventDefault();
             const id = document.getElementById('menu-id').value;
             const name = document.getElementById('menu-name').value;
+            const cat = document.getElementById('menu-cat').value;
             const description = document.getElementById('menu-desc').value;
             const price = parseFloat(document.getElementById('menu-price').value);
             const image = document.getElementById('menu-image').value;
 
             if (id) {
                 const item = menuItems.find(i => i.id === id);
-                item.name = name; item.description = description; item.price = price; item.image = image;
+                item.name = name; item.cat = cat; item.description = description; item.price = price; item.image = image;
             } else {
-                menuItems.push({ id: Date.now().toString(), name, description, price, image, status: 'AVAILABLE' });
+                menuItems.push({ id: Date.now().toString(), cat, name, description, price, image, status: 'AVAILABLE' });
             }
 
             closeMenuModal();
@@ -573,7 +616,6 @@
             renderCustomerMenu();
         }
 
-        // 5. Admin Quản lý Đơn hàng
         function renderAdminOrders() {
             const tbody = document.getElementById('admin-orders-table');
             tbody.innerHTML = orders.map(o => `
@@ -615,7 +657,7 @@
             content.innerHTML = `
                 <div><b>Mã đơn:</b> ${order.id}</div>
                 <div><b>Khách hàng:</b> ${order.customerName} (${order.phone})</div>
-                <div><b>Địa chỉ:</b> ${order.address}</div>
+                <div><b>Địa chỉ / Lớp:</b> ${order.address}</div>
                 <div><b>Ghi chú:</b> ${order.note || 'Không có'}</div>
                 <div><b>Trạng thái:</b> ${getStatusText(order.status)}</div>
                 <div class="border-t pt-2 mt-2"><b>Danh sách món:</b></div>
@@ -627,7 +669,6 @@
 
         function closeAdminOrderModal() { document.getElementById('modal-order-admin').classList.add('hidden'); }
 
-        // 6. Admin Quản lý Khách hàng
         function renderAdminCustomers() {
             const tbody = document.getElementById('admin-customers-table');
             tbody.innerHTML = customers.map(c => {
@@ -645,11 +686,9 @@
             }).join('');
         }
 
-        // 7. Admin Dashboard Báo cáo Doanh thu
         function renderAnalytics() {
             document.getElementById('stat-total-orders').innerText = orders.length;
 
-            // Chỉ tính các đơn HOÀN THÀNH (COMPLETED)
             const completedOrders = orders.filter(o => o.status === 'COMPLETED');
             const totalRevenue = completedOrders.reduce((s, o) => s + o.totalAmount, 0);
             document.getElementById('stat-total-revenue').innerText = `${totalRevenue.toLocaleString()} đ`;
@@ -657,7 +696,6 @@
             const avgOrder = completedOrders.length > 0 ? Math.round(totalRevenue / completedOrders.length) : 0;
             document.getElementById('stat-avg-order').innerText = `${avgOrder.toLocaleString()} đ`;
 
-            // Món bán chạy nhất
             const itemCounts = {};
             completedOrders.forEach(o => {
                 o.items.forEach(i => {
@@ -672,17 +710,16 @@
             }
             document.getElementById('stat-top-item').innerText = topItem;
 
-            // Chart.js
             const ctx = document.getElementById('revenueChart').getContext('2d');
             if (chartInstance) chartInstance.destroy();
 
             chartInstance = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: ['2026-10-05', '2026-10-06', '2026-10-07', 'Hôm nay'],
+                    labels: ['2026-10-07', '2026-10-08', 'Hôm nay'],
                     datasets: [{
                         label: 'Doanh thu (VNĐ)',
-                        data: [120000, 180000, 55000, totalRevenue],
+                        data: [150000, 180000, totalRevenue],
                         backgroundColor: '#f97316'
                     }]
                 },
